@@ -203,14 +203,15 @@ C言語と違い、rubyのfor文は繰り返し処理の制御構造に於いて
 
 #### 2.5.2 コード例
 実際にfor文を用いて繰り返し処理を実行してみよう。
-例えば、1から10までの和を求めるfor式は以下のようになる。
+例えば、1から10までの数を表示するfor式は以下のようになる。
 
-    sum = 0
-    for i in 1..10 do
-	  sum = i + 1
-	end
+    for i in 1..10
+	    puts (i)
+	  end
+ここでは今までのprintに変わって新しくputsという関数を使っているが、これは文末に自動的に改行を入れてくれる関数である。これらを用いて、AOJの以下の問題を解いてみると良いだろう。
+http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0000  
 
-## 参考資料
-初めてのRuby O'REILLY Japan　Yugui著
-http://www.oki-osk.jp/esc/ruby/tut-01.html
-http://docs.ruby-lang.org/ja/2.0.0/doc/index.html
+## 参考資料  
+初めてのRuby O'REILLY Japan　Yugui著  
+http://www.oki-osk.jp/esc/ruby/tut-01.html  
+http://docs.ruby-lang.org/ja/2.0.0/doc/index.html  
