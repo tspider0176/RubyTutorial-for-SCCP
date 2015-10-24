@@ -1,6 +1,6 @@
 # 課外プロジェクト 2015 実践的プログラミング II
 2015 10/29 渡部未来・齊藤智博
-資料URL:
+資料URL: https://github.com/tspider0176/RubyTutorial-for-SCCP
 
 ## 1 はじめに
 ### 1.1 言語の歴史
