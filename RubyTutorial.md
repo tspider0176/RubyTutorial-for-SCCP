@@ -142,28 +142,28 @@ rubyにおけるcase式は、C言語におけるswitch-case文に相当するも
 例えば、以下の問題を少し簡単にして、指定された演算子によって整数同士の計算結果を一回だけ出力するようにしよう。
 http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_4_C  
 
-    ```
-    // 今回はこちらから値を指定してあげる
-    a=810
-    b=19
-    op = "+"
+```
+// 今回はこちらから値を指定してあげる
+a=810
+b=19
+op = "+"
 
-    // 演算子によって返す値を変え、出力
-    puts(
-      case op
-      when "+" then
-        a + b
-      when "-" then
-        a - b
-      when "*" then
-        a * b
-      when "/" then
-        a / b
-      else
-        "error"
-      end
-    )
-    ```
+// 演算子によって返す値を変え、出力
+puts(
+  case op
+  when "+" then
+    a + b
+  when "-" then
+    a - b
+  when "*" then
+    a * b
+  when "/" then
+    a / b
+  else
+    "error"
+  end
+)
+```
 上記の実行結果はもちろん以下になる。
 
     829 => nil
