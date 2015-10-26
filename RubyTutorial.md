@@ -143,6 +143,7 @@ rubyにおけるcase式は、C言語におけるswitch-case文に相当するも
 http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_4_C  
 
 ```
+ruby:SimpleCalc.rb
 // 今回はこちらから値を指定してあげる
 a=810
 b=19
