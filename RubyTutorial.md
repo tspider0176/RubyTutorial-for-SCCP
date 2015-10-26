@@ -67,58 +67,74 @@ C言語の制御「文」とは違い、rubyでは制御「式」と言う呼び
 #### 2.2.1 構文
 rubyにおけるif式の基本的な構文は以下の形になる。
 
-    // Rubyにおけるif式
-    if [条件式] then
-	  [被制御式]
-  	end
+```
+# Rubyにおけるif式
+if [条件式] then
+	[被制御式]
+end
 
-	  // 複数条件ある時のif式 (elseif ではないことに注意！)
-    if [条件式1] then
-      [被制御式1]
-  	elsif [条件式2] then
-	    [被制御式2]
-    elsif ...
-	  ...
-    else
-      [被制御式n]
-    end
+# 複数条件ある時のif式 (elseif ではないことに注意！)
+if [条件式1] then
+  [被制御式1]
+elsif [条件式2] then
+  [被制御式2]
+elsif ...
+...
+else
+  [被制御式n]
+end
+```
 
 条件式と被制御式部分が明確に分離可能な場合はthenは省略出来る。先の章で式とは値を返す物だと説明したが、if式の場合は被制御式の最後に評価された式の値を返す。  
   もし条件分岐先の処理が至極単純であり、長々とif式を書くのが煩わしいと感じる人はif修飾子を用いて以下のように書くことができる。
 
-    // if制御式の書き方
-    [被制御式] if [条件式]
+```
+# if制御式の書き方
+[被制御式] if [条件式]
+```
+
 また、rubyにはunless式という制御構文が実装されており、その名の通り条件式が偽の時に被制御式を評価する。
 
-    // unless構文
-    unless [条件式] then
-	  [被制御式]
-    end
+```
+# unless構文
+unless [条件式] then
+  [被制御式]
+end
 
-    // if式と同じくunless修飾子を使うことが出来る。
-    [被制御式] unless [条件式]
+# if式と同じくunless修飾子を使うことが出来る。
+[被制御式] unless [条件式]
+```
 
 #### 2.2.2 コード例とC言語のif文との違い
 AOJの問題を例にif式の使い方を紹介しよう。  
 http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_2_A
 
-    // C言語の模範的解答
-  	if(a < b) printf("a < b\n");
-  	else if(a > b) printf("a > b\n");
-	  else printf("a == b\n");
+```
+# C言語の模範的解答
+if(a < b) printf("a < b\n");
+else if(a > b) printf("a > b\n");
+else printf("a == b\n");
+```
+
 これはC言語におけるifが"文"である事に忠実な書き方だが、rubyにおけるifは"式"であり、"値を返す"という事を考慮すると、以下のようなコードが考えられる。
 
-	  // Rubyでの解答一例
-    print(
-	    if a == b then "a = b"
-	    else "a != b"
-	    end
-	  )
+```
+# Rubyでの解答一例
+print(
+  if a == b then "a = b"
+  else "a != b"
+  end
+)
+```
+
 また、前節最後で紹介したif修飾子を用いた書き方をすると、よりスマートな書き方が可能になる。
 
-    // Rubyのif修飾子とunless修飾子を用いた解答
-    print "a = b" if a == b
-    print "a != b" unless a == b
+```
+# Rubyのif修飾子とunless修飾子を用いた解答
+print "a = b" if a == b
+print "a != b" unless a == b
+```
+
 以上の説明でなんとなく理解が出来たら、理解を確実にするためにAOJの以下の問題を解いてみよう。
 http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_2_B
 
@@ -127,7 +143,7 @@ http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_2_B
 rubyにおけるcase式は、C言語におけるswitch-case文に相当するものであり、値による多岐分岐を提供してくれている。
 
 ```
-// Rubyのcase式
+# Rubyのcase式
 case [変数]
 when [値] then
   [処理]
@@ -135,7 +151,7 @@ when [値] then
   [処理]
 ...
 else
-	[処理]
+  [処理]
 end
 ```
 
@@ -146,12 +162,12 @@ end
 http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_4_C  
 
 ```
-// 今回はこちらから値を指定する
+# 今回はこちらから値を指定する
 a=810
 b=19
 op = "+"
 
-// 演算子によって返す値を変え、出力
+# 演算子によって返す値を変え、出力
 puts(
   case op
   when "+" then
@@ -185,7 +201,7 @@ while [条件式] do
   [被制御部]
 end
 
-//if式などと同様にwhile修飾子が存在している。
+# if式などと同様にwhile修飾子が存在している。
 [被制御部] while [条件式]
 ```
 
@@ -222,39 +238,47 @@ end until [条件式]
 http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_A  
 rubyでの模範的な回答は以下になる。
 
-    # while式を用いた解法
-      i = 0
-  	while i < 1000
-      print "Hello World\n"
-      i = i+1
-	  end
+```
+# while式を用いた解法
+i = 0
+while i < 1000
+  print "Hello World\n"
+  i = i+1
+end
 
-	  # until式を用いた解法
-	  i = 1000
-	  until i > 0
-	    print "Hello World\n"
-	    i = i-1
-	  end
+# until式を用いた解法
+i = 1000
+until i > 0
+  print "Hello World\n"
+  i = i-1
+end
+```
 
 ### 2.5 for式
 #### 2.5.1 構文
-前節で紹介したwhile式と同様に、繰り返しの代表的な構造が本節で紹介するfor式だ。この式はC言語などで用いる場面と同じく、配列の操作などに長けている。以下にその構文を示そう。
+最後に、for式を説明しよう。この式はC言語などで用いる場面と同じく、配列の操作などに長けている。以下にその構文を示す。
 
-    for [変数] in [オブジェクト] do
-	    [被制御部]
-	  end
-inの後にある[オブジェクト]にはRange型や配列そのものが入る。for式ではあらかじめ指定したオブジェクトから要素を全て取り出すと繰り返しは終了するので、特に終了条件をこちらから与えてあげる必要はない。
+```
+# doは省略可能
+for [変数] in [オブジェクト] do
+  [被制御部]
+end
+```
 
+inの後にある[オブジェクト]にはループ対象のRange型オブジェクトや配列そのものが入る。for式ではあらかじめ指定したオブジェクトから要素を全て取り出すと繰り返しは終了するので、特に終了条件をこちらから与えてあげる必要はない。  
 C言語と違い、rubyのfor文は繰り返し処理の制御構造に於いてそこまで重要な立ち位置を占めていない。と言うのも、for式の中でも実際にはイテレータを呼び出しており、より繰り返し構造を深く理解するにはイテレータを理解した方が良いだろう。
 
 #### 2.5.2 コード例
 実際にfor文を用いて繰り返し処理を実行してみよう。
 例えば、1から10までの和を求めるfor式は以下のようになる。
 
-    sum = 0
-    for i in 1..10 do
-	    sum = i + 1
-	  end
+```
+# 1から10までの和をfor式で求める
+sum = 0
+for i in 1..10 do
+  sum = i + 1
+end
+```
 
 ## 参考資料
 初めてのRuby O'REILLY Japan　Yugui著  
