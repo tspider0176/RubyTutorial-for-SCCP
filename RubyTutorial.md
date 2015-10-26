@@ -134,25 +134,28 @@ rubyにおけるcase式は、C言語におけるswitch-case文に相当するも
 	    [処理]
 	  ...
 	  else
-	    [処理]
-	  end
+	    [処理]
+	  end
 上のcase式では、まずcaseの後に置かれた[変数]が評価され、次にその値に対応するwhen節が選ばれた後にthen節が実行され、最後に評価された式がcase式全体の値になり、返却される。このcase式もif式と同じく、区切りが明確であればthenは省略可能である。
 
 #### 2.3.2 コード例とC言語のswitch-case文との違い
+例えば、以下の問題を少し簡単にして、指定された演算子によって整数同士の計算結果を一回だけ出力するようにしよう。
 http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_4_C  
 
-    // 演算子によって返す値を変え、出力。
+    ```
+    // 今回はこちらから値を指定してあげる
     a=810
     b=19
     op = "+"
 
+    // 演算子によって返す値を変え、出力
     puts(
       case op
       when "+" then
         a + b
       when "-" then
         a - b
-      when "\*" then
+      when "*" then
         a * b
       when "/" then
         a / b
@@ -160,10 +163,11 @@ http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_4_C
         "error"
       end
     )
+    ```
 上記の実行結果はもちろん以下になる。
 
     829 => nil
-
+このように、
 
 ### 2.4 while式
 #### 2.4.1 構文
