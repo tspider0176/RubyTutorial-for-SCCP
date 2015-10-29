@@ -163,8 +163,9 @@ puts y
 Rubyの関数やifでは、最後に評価される値を結果として返していることがわかる。
 
 if式の使い方が習得できているかの確認のために以下の問題を解いてみよう。
-http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_2_A
-http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_2_B
+
+- http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_2_A
+- http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_2_B
 
 補足
 ```
@@ -233,7 +234,8 @@ loop{ # 無限ループをするメソッド
 }
 ```
 case式の使い方を覚えたら次の問題を解いてみよう。
-http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_4_C  
+
+- http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_4_C  
 
 ### 2.4 while式
 #### 2.4.1 構文
@@ -326,6 +328,7 @@ p arr.sort #=> ["a", "a", "b", "b", "c", "c"] 配列を並び替える
 arr.uniq! #=> ["a",  "b",  "c"] 重複要素を削除
 p arr.join(":") #=> "a:b:c" 指定した文字列で要素を区切った文字列を生成
 ```
+
 ここで、メソッドの名前について注目してもらいたい。?と!で終わっているものがあると思われる。
 これは特別な機能ではなく、単純にメソッド名に記号が使うことができるだけである。
 しかし、習慣として?で終わるメソッドは真偽値(true, false)を返すメソッド、!で終わるメソッドは破壊的な処理を行うメソッドである。
@@ -347,24 +350,116 @@ irb(main):005:0> p arr      # 元の配列も変更されてしまう(破壊的�
 ```
 
 配列のメソッドを利用して以下の問題を解いてみよう。
-http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_2_C
-http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_6_A
-http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_5_A (ちょっと難しめ？)
-参考: [Array - Rubyリファレンス] http://ref.xaio.jp/ruby/classes/array
+
+- http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_2_C
+- http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_6_A
+- http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_5_A (ちょっと難しめ？)
+- 参考: [Array - Rubyリファレンス] http://ref.xaio.jp/ruby/classes/array
+
+これまでに、いくつかの配列のメソッドについて触れた。
+ここで配列のブロック付きメソッドとイテレータについて説明をする。
+
+以下がブロック付きメソッドとイテレータの例である。
+
+```
+# -*- coding: utf-8 -*-
+
+arr = ['a', 'b', 'c']
+arr.each do |item|
+  print item + " " #=> a, b, c
+end
+```
+
+まず初めに配列は、*each*と言う名前のメソッドを呼び出している。
+eachメソッドは、ブロックを引数として受け取る。
+ブロックにあたるのが、*do*から*end*キーワードまでである。
+ブロックは引数を持つことができ、|引数, …|という形で書くことができる。
+引数は、イテレータにより配列の要素が一つ一つ送り込まれ、ブロックの中の文が評価される。
+図で書くと以下のような形だ。
+
+```
+   ↓
+['a', 'b', 'c']
+['b', 'c']   ->  item = |"a"|  ->   print "a"
+['c']        ->  item = |"b"|  ->   print "b"
+[]           ->  item = |"c"|  ->   print "c"
+```
+
+配列の添字が必要なケースがある場合は、*each_with_index*メソッドを使おう。
+このメソッドはブロックの最初の引数が配列から来た値で、2つ目の引数が添字になっている。
+```
+arr.each_with_index do |item, index|
+  p [item, index]
+end
+#=> ["a", 0]
+#=> ["b", 1]
+#=> ["c", 2]
+```
+
+配列の各々の要素に対して何か処理を施して、その結果を再び配列としてまとめたい場合がある。
+そのときは*map*メソッドを使う。最後に評価された値が再び配列の要素となる。
+
+```
+arr = ['abc', 'def', 'ghi']
+arr.map do |item|
+  item.upcase
+end
+p arr #=> ["ABC", "DEF", GHI]
+```
+
+また、do ~ endの構文は波括弧で記述することもできる。
+
+```
+p arr.map{|item| item.upcase}
+```
+
+さらに、省略して書くこともできます。
+
+```
+p arr.map{&:upcase}
+```
+
+mapメソッドの動きを図にすると以下の様な形になる。
+
+```
+['abc', 'def', 'ghi']
+['def', 'ghi']   ->  item = |"abc"|  ->   ['ABC']
+['ghi']  	       ->  item = |"def"|  ->   ['ABC', 'DEF']
+[]               ->  item = |"ghi"|  ->   ['ABC', 'DEF', 'GHI']
+```
+
+最後に畳み込みを行う*inject*メソッドを紹介する。
+畳み込みとは配列を順に見ていくときに、用意した値に対して配列の要素を演算していく(畳み込んでいく)。
+例えば、足し込んで行く場合は以下のようになる。
+
+```
+puts (1..100).to_a.inject { |sum, n| sum + n} # 5050 nが用意した値。初期値として0が代入されている。
+```
+以下のように省略することもできる。
+```
+puts (1..100).to_a.inject(:+)
+```
+
+以上で配列は終わりとなる。多くの便利なメソッドが用意され、非常に柔軟な処理ができることがわかったと思う。
+最後に配列に関する問題を用意するので、解いてみてほしい。
+
+- http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_4_D (全て畳み込み演算で求めてみよう。)
+- http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0102&lang=jp
 
 ## 4 ハッシュ
-今まではデータと数値の関係をプログラム中で記述するには配列を用いていた。しかし、あくまでもそれは操作対象が数値の時くらいであり、"ある人物とその人の年齢"だとか、はたまた要素が数値ですらない"授業の名前と担当教授"だとか言った関係は記録が出来ない。そんな時に用いるのがハッシュである。ハッシュとは、任意のオブジェクトをキーとして別のオブジェクトに対応付けるコンテナオブジェクトである。ハッシュの要素は、*キー(key)* となるオブジェクトから *値(value)* となるオブジェクトへの対応関係を持っている。具体例を以下に示そう。
+ハッシュとは、任意のオブジェクトをキーとして別のオブジェクトに対応付けるコンテナオブジェクトである。
+配列の場合は添字(整数)をキーとして別のオブジェクトに対応付けるコンテナオブジェクトと言える。
+Rubyでは、シンボルという文字列(のように見えるもの)をキーとしてとしてハッシュを書くのがベターとされている。
+以下にハッシュの構築方法と、アクセス方法を示す。
 
 ```
-humane_studies ={
-	"Philosophy" => "Ohta",
-	"Logic" => "Aoki",
-	"Psychology" => "Kikuchi",
-	"Linguistics" => "Shimada",
-	"Arts" => "Kakeda",
-	"Law" => "Seino"
-}
+hash = {one: 1, two: 2, three: 3}
+p hash[:one] #=> 1
+p hash[:two] #=> 2
+hash[:five] = 5 # 新しいキーとバリューの組み合わせ。
+p hash       #=> {:one=>1, :two=>2, :three=>3, five=>5}
 ```
+
 上のハッシュをREPL上で宣言して、実際に以下のコマンドを打ってハッシュの挙動を確かめてみよう。
 
 ```
@@ -378,18 +473,19 @@ p humane_studies["Philosophy"] = ["Ohta", "Aoki"]
 book_to_author["Written expression"] = "Sawa"
 ```
 
-もちろんハッシュにも、特有のメソッドが存在する。これは配列の場合とよく似ており、例えば、Hash#map はブロックを評価した結果を集めて配列を作成する。
+ハッシュも多くのメソッドを備えているが、とりあえずは配列の要領でリファレンスを見てもらうことにする。
+
+- http://docs.ruby-lang.org/ja/2.1.0/class/Hash.html
+
+ハッシュにも配列同様にイテレータをサポートしているメソッドを持っている。
 
 ```
-p humane_studies.map{|lec,prof|
-  "#{lec} by #{prof}"
-}
-# 下の値が帰ってくる
-# => ["Philosophy by Ohta", "Logic by Aoki", "Psychology by Kikuchi", "Linguistics by Shimada", "Arts by Kakeda", "Law by Seino"]
+hash = {Mike: 18,  John: 19,  Jakky: 28,  Mika: 20,  Karen: 22,  Mary: 19,  Chris: 28,  Mikky: 25 }
+hash.each do |name, age|
+  puts "#{name}: #{age}" if name[0] == "M" || name[0] == "C" # 頭文字がMとCの人だけ表示する。
+end
 ```
-
-ここでは紹介しきれないが、メソッドはこれ以外にも複数あるので是非調べてみよう。
-前節、本節で紹介したこれらのデータ型を用いれば、C言語で苦労した様々な問題に対する別の解法が得られるだろう。
+ハッシュを自由自在に使えると応用が効きやすいので、覚えると良い。
 
 ## 参考資料
 初めてのRuby O'REILLY Japan　Yugui著  
