@@ -11,7 +11,6 @@ Rubyは日本人、まつもとゆきひろ(通称Matz)の手によって開発�
 
 __オブジェクト指向言語__  
 
-
 __スクリプト言語__  
 
 ### 1.2 対話型シェル REPL、ソースコード実行
@@ -360,7 +359,7 @@ p humane_studies.map{|lec,prof|
 # => ["Philosophy by Ohta", "Logic by Aoki", "Psychology by Kikuchi", "Linguistics by Shimada", "Arts by Kakeda", "Law by Seino"]
 ```
 
-ここでは紹介しきれないが、メソッドはこれ以外にも複数あるので是非調べてみよう。
+ここでは紹介しきれないが、メソッドはこれ以外にも複数あるので調べてみよう。
 前節、本節で紹介したこれらのデータ型を用いれば、C言語で苦労した様々な問題に対する別の解法が得られるだろう。
 
 ## 参考資料
