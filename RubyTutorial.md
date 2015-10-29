@@ -202,6 +202,7 @@ int x;
 while(1){
 	scanf("%d", &x);
 	switch(x){
+		case 0:
 		case 1:
 		case 2:
 		case 3:
