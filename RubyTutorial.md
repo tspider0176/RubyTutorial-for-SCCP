@@ -460,19 +460,6 @@ hash[:five] = 5 # 新しいキーとバリューの組み合わせ。
 p hash       #=> {:one=>1, :two=>2, :three=>3, five=>5}
 ```
 
-上のハッシュをREPL上で宣言して、実際に以下のコマンドを打ってハッシュの挙動を確かめてみよう。
-
-```
-# キーを指定して、値を参照する
-p humane_studies["Philosophy"]  # => "Aoki"
-# 存在しないキーの場合
-p humane_studies["Linear Algebra"] #=> nil
-# 既存のキーの更新
-p humane_studies["Philosophy"] = ["Ohta", "Aoki"]
-# 新しいキーの登録
-book_to_author["Written expression"] = "Sawa"
-```
-
 ハッシュも多くのメソッドを備えているが、とりあえずは配列の要領でリファレンスを見てもらうことにする。
 
 - http://docs.ruby-lang.org/ja/2.1.0/class/Hash.html
