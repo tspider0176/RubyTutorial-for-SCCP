@@ -1,6 +1,6 @@
 # 課外プロジェクト 2015 実践的プログラミング
 ## ~ Ruby I ~
-2015 10/29 渡部未来・齊藤智博
+2015 10/29 渡部未来・齊藤智博  
 資料URL: https://github.com/tspider0176/RubyTutorial-for-SCCP
 
 ## 1 はじめに
@@ -48,7 +48,7 @@ HelloWorld!
 資料では #=> と書いた場合は、プログラムの実行結果をあらわす。Rubyの練習では、AOJと呼ばれるオンラインジャッジシステムを使っていく。
 確認の意味を込めて、以下の問題を解いてみよう。
 
-http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A  
+- http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A  
 
 Rubyは以上のようにファイルにプログラムを書く以外にも、プログラムを実行する対話型シェル(REPL)を備えている。
 REPLは*irb*とターミナルに打つことで起動ができる。
@@ -281,7 +281,7 @@ end
 ```
 
 forとtimesメソッド両方を使い、以下の問題を解いてみよう。
-http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_A
+- http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_A
 
 ## 3 配列
 制御構文を通して、RubyとC言語との違いを説明してきた。しかし配列の仕組みはC言語と比べてまったくと言っていいほど別物である。
@@ -473,8 +473,13 @@ hash.each do |name, age|
 end
 ```
 ハッシュを自由自在に使えると応用が効きやすいので、覚えると良い。
+以下にハッシュが使えるような問題を以下に用意した。少々難しい問題かもしれないが、是非こちらも挑戦してみて欲しい。
+- http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0088
+- http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0105
+- http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0201
+- http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0242
 
 ## 参考資料
-初めてのRuby O'REILLY Japan　Yugui著  
-http://www.oki-osk.jp/esc/ruby/tut-01.html  
-http://docs.ruby-lang.org/ja/2.0.0/doc/index.html  
+- 初めてのRuby O'REILLY Japan　Yugui著  
+- http://www.oki-osk.jp/esc/ruby/tut-01.html  
+- http://docs.ruby-lang.org/ja/2.0.0/doc/index.html  
